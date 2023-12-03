@@ -1,0 +1,18 @@
+.navigation{
+    &__logo{
+        color: #FFF;
+        font-size: 12px;
+        font-weight: 400;
+        margin-right: 40px;
+        &-img {
+            position: absolute;
+            top: -17px;
+            left: -33px;
+        }
+        &:hover{
+            color: #000;
+        }
+        border: none;
+        background-color: rgba(0,0,0,0);
+    }
+}

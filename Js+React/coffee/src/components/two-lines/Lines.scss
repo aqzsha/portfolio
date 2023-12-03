@@ -1,0 +1,25 @@
+.line{
+    &__logo{
+        margin-bottom: 33px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        &-img{
+            margin: 0 15px;
+        }
+        &-line{
+            width: 60px;
+            height: 1px;
+            background-color: #fff;
+        }
+    }
+}
+
+.black{
+    background-color: #000;
+}
+.white{
+    background-color: #fff;
+}

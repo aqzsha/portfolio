@@ -1,0 +1,17 @@
+.fixed{
+    position: fixed;
+    margin-left: 148px;
+    margin-top: 30px;
+}
+.nav{
+    &__logo-img {
+        position: absolute;
+        top: -20px;
+        left: -23px;
+      }
+    &__item{
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
