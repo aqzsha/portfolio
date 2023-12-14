@@ -1,57 +1,35 @@
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Charger", quantity: 12, packed: false },
-];
-
+import { useState } from "react";
+import Logo from "./Logo"; 
+import Form from "./Form";
+import PackingList from "./PackingList";
+import Stats from "./Stats";
 
 export default function App(){
+  const [items, setItems] = useState([]);
+  function handleAddItems(item){
+    setItems(items=> [...items, item]);
+  }
+
+  function handleDeleteItems(id){
+    setItems(items=>items.filter(item=>item.id!==id));
+  }
+
+  function handleToggleItem(id){
+    setItems(items=>items.map(item=>item.id===id ? {...item, packed: !item.packed}:item));
+  }
+  
+  function handleClearItems(){
+    const confirmed = window.confirm('Are you sure you want to delete all the items?');
+    if(confirmed){
+      setItems([]);
+    }
+  }
   return (
     <div className="app">
       <Logo/>
-      <Form/>
-      <PackingList/>
-      <Stats/>
+      <Form onAddItems={handleAddItems}/>
+      <PackingList items={items} onDeleteItem={handleDeleteItems} onToggleItems={handleToggleItem} onClear={handleClearItems}/>
+      <Stats items={items}/>
     </div>
   )
-}
-
-function Logo(){
-  return <h1>🌴 Far Away 💼</h1>
-}
-
-function Form(){
-  return <div className="add-form">
-    <h3>What do you need for your trip?</h3>
-  </div>
-}
-
-function PackingList(){
-  return (
-    <div className="list">
-      <ul>
-        {initialItems.map((item)=>(
-          <Item item={item}/>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-function Item({item}){
-  return (
-    <li>
-      <span>
-        {item.quantity} {item.description}
-      </span>
-      <button>❌</button>
-    </li>
-  );
-}
-function Stats(){
-  return <footer className="stats">
-    <em>
-    You have X items on your list, and you already packed X (X%)
-    </em>
-  </footer>
 }
